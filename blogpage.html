@@ -1,0 +1,112 @@
+
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Material design sign up form</title>
+      <link rel="stylesheet" href="style.css">
+	  <script>
+function blank() {
+	var err = "";
+
+	if(document.getElementById('title').value=="") {
+		err += "plz enter title \n";
+	}
+	if(document.getElementById('para1').value=="") {
+		err += "plz enter paragraph1 \n";
+	}
+	if(document.getElementById('para2').value=="") {
+		err += "plz enter paragraph2\n";
+	}
+	if(document.getElementById('para3').value=="") {
+		err += "plz enter paragraph3 \n";
+	}
+	if(document.getElementById('author').value=="") {
+		err += " plz enter author name\n";
+	}
+	if(err!= "") {
+	alert(err);
+	return false;
+	}
+}
+function validateImage() {
+    var formData = new FormData();
+ 
+    var file = document.getElementById("img").files[0];
+ 
+    formData.append("Filedata", file);
+    var t = file.type.split('/').pop().toLowerCase();
+    if (t != "jpeg" && t != "jpg" && t != "png" && t != "bmp" && t != "gif") {
+        alert('Please select a valid image file');
+        document.getElementById("img").value = '';
+        return false;
+    }
+    if (file.size > 1024000) {
+        alert('Max Upload size is 1MB only');
+        document.getElementById("img").value = '';
+        return false;
+    }
+    return true;
+}
+
+
+</script>
+	  
+</head>
+
+<body>
+  <div id="login-box">
+  <div class="left">
+    <h1><I>MY FIRST BLOG<I></h1>
+	<form method="post" action="display.php" onsubmit="return blank()">
+	
+	<label>Title of Blog:
+    <input type="text" id="title" name="TitleofBlog" maxlength=20 />
+	<?php echo @$_GET['Title']; ?>
+	</label>
+	
+	<label>Blog paragraph1:
+    <input type="text" id="para1" name="Blogparagraph1" />
+	<?php echo @$_GET['Para1']; ?>
+	</label>
+	
+	<label>Blog paragraph2:
+    <input type="text" id="para2" name="Blogparagraph2" />
+	<?php echo @$_GET['Para2']; ?>
+	</label>
+	
+	<label>Blog paragraph3:
+    <input type="text" id="para3" name="Blogparagraph3" />
+	<?php echo @$_GET['Para3']; ?>
+	</label>
+	
+	<label>Blog Author Name:	
+	<input type="text" id="author" name="BlogAuthorName" maxlength=12/>
+	<?php echo @$_GET['Author']; ?>
+	</label>
+		
+	<label>upload image:<br>
+	<input type="file" name="f" accept="image" id="img" onchange="validateImage()">
+	</label>
+	<br><br>
+
+	
+    <input type="submit" name="submit"  value="submit" />	
+	</form> 
+	
+  </div>
+ 
+  <div class="right">
+    <p><em>Blog feel small?
+	if you have just one reader and your blog changes 
+		their life your blog is big enough.
+
+	</em></p>
+  </div>
+</div>
+  
+  
+</body>
+</html>
+
+
+	
